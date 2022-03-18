@@ -39,11 +39,11 @@ ${ this.props.autoHeight ? this._autoHeightScript : '' }
 
 
   render() {
-    const { autoHeight, injectedJavaScript, onMessage, ...rest } = this.props;
-    console.log('_injectedJavaScript: ', this._injectedJavaScript);
+    const { autoHeight, injectedJavaScript, onMessage, webviewRef, ...rest } = this.props;
     return (
       <View style={{ height: this.state.height }}>
         <WebView
+          ref={webviewRef}
           onMessage={(event) => {
             if (autoHeight) {
               const { height } = JSON.parse(event.nativeEvent.data);
@@ -62,13 +62,15 @@ ${ this.props.autoHeight ? this._autoHeightScript : '' }
 AutoHeightWebview.propTypes = {
   injectedJavaScript: PropTypes.string,
   autoHeight: PropTypes.bool,
-  onMessage: PropTypes.func
+  onMessage: PropTypes.func,
+  webviewRef: PropTypes.any
 };
 
 AutoHeightWebview.defaultProps = {
   injectedJavaScript: '',
   autoHeight: true,
-  onMessage: () => {}
+  onMessage: () => {},
+  webviewRef: undefined
 };
 
 export default AutoHeightWebview;
