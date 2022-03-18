@@ -1,0 +1,13 @@
+{
+  "name": "react-native-auto-height-web-view",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "MoreCoke",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-native": "^0.67.4",
+    "react-native-webview": "^11.17.2"
+  }
+}
