@@ -21,6 +21,7 @@ Setting webview's height by observing its scrollHeight.
 ### containerStyle
 
 Setting style for outside View of Webview.
+The webview default height is 200.
 
 | Type      | Required | Default   |
 | --------- | -------- | --------- |

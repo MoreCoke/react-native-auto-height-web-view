@@ -39,9 +39,12 @@ ${ this.props.autoHeight ? this._autoHeightScript : '' }
 
 
   render() {
-    const { autoHeight, injectedJavaScript, onMessage, webviewRef, ...rest } = this.props;
+    const { autoHeight, injectedJavaScript, onMessage, webviewRef, containerStyle, ...rest } = this.props;
+    const mergedStyle = Array.isArray(containerStyle)
+      ? [{ height: this.state.height }, ...containerStyle]
+      : [{ height: this.state.height }, containerStyle];
     return (
-      <View style={{ height: this.state.height }}>
+      <View style={mergedStyle}>
         <WebView
           ref={webviewRef}
           onMessage={(event) => {
@@ -63,14 +66,19 @@ AutoHeightWebview.propTypes = {
   injectedJavaScript: PropTypes.string,
   autoHeight: PropTypes.bool,
   onMessage: PropTypes.func,
-  webviewRef: PropTypes.any
+  webviewRef: PropTypes.any,
+  containerStyle: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 };
 
 AutoHeightWebview.defaultProps = {
   injectedJavaScript: '',
   autoHeight: true,
   onMessage: () => {},
-  webviewRef: undefined
+  webviewRef: undefined,
+  containerStyle: undefined
 };
 
 export default AutoHeightWebview;
